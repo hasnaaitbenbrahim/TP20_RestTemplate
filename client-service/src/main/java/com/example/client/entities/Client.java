@@ -10,13 +10,15 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String nom;
+    private Integer age;
 
     public Client() {
     }
 
-    public Client(String name) {
-        this.name = name;
+    public Client(String nom, Integer age) {
+        this.nom = nom;
+        this.age = age;
     }
 
     public Long getId() {
@@ -27,11 +29,19 @@ public class Client {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNom() {
+        return nom;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

@@ -43,6 +43,25 @@ public class ClientService {
     public Client addClient(Client client) {
         return clientRepository.save(client);
     }
+    
+    /**
+     * Met à jour un client existant
+     * 
+     * @param id L'identifiant du client à mettre à jour
+     * @param clientDetails Les nouvelles informations du client
+     * @return Le client mis à jour
+     * @throws Exception Si aucun client n'est trouvé avec cet ID
+     */
+    public Client updateClient(Long id, Client clientDetails) throws Exception {
+        Client client = clientRepository.findById(id)
+                .orElseThrow(() -> new Exception("Client non trouvé avec l'ID: " + id));
+        
+        client.setNom(clientDetails.getNom());
+        client.setAge(clientDetails.getAge());
+        
+        return clientRepository.save(client);
+    }
 
     // Vous pouvez ajouter d'autres méthodes métier ici
 }
+

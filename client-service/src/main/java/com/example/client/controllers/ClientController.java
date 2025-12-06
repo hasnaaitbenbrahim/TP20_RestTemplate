@@ -1,4 +1,3 @@
-
 package com.example.client.controllers;
 
 import com.example.client.entities.Client;
@@ -50,4 +49,20 @@ public class ClientController {
         Client savedClient = service.addClient(client);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedClient);
     }
+    
+    /**
+     * Met à jour un client existant
+     * PUT /api/client/{id}
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Client clientDetails) {
+        try {
+            Client updatedClient = service.updateClient(id, clientDetails);
+            return ResponseEntity.ok(updatedClient);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Erreur: " + e.getMessage());
+        }
+    }
 }
+
